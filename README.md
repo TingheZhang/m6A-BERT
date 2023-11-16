@@ -15,8 +15,15 @@ you can set your enviroment names by change the first line of the m6abert.yml . 
 The following package is necessary for our project: pytorch=1.10.2, captum=0.5.0,python=3.6
 After enviroment setup, use following command to activate this enviroments:
  > conda activate m6abert
+## 2.Data process
+The sequence should be processed into the K-mer before the fine-tuning and prediction. 
+> export KMER=3 ### select the K from 3 to 6
+> export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
+> export DATA_PATH=THE_PATH_YOU_WANT_TO_SAVE_PROCESS-DATA
+> export seed=52 ## select the seed number your like, this seed is used for data balance 
+> python3 get_input.py --do_val --kmer $KMER --extend_len 250 --task finetune --data_dir $RAW_DATA_PATH --save_dir $DATA_PATH --seed $seed
 
-## 2. Train the model 
+## 3. Fine-tune the model 
 G-TEM_pytorch_3l_34.py is the model that has the best performance for our cancer prediction task. The code can sinply run by :
 > python G-TEM_pytorch_3l_34.py  --head_num 5 --learning_rate 0.0001 --act_fun leakyrelu --batch_size 16 --epoch 1 --do_val --dropout_rate 0.3 --result_dir model_res/3l/ --model_dir model/3l/
 
