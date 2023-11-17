@@ -31,8 +31,8 @@ m6A-BERT can be easily fine-tuned for downstream analysis. The code can be simpl
 ```
 export KMER=3 ### select the K from 3 to 6, have to match the K in the data process section 
 export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
-export DATA_PATH=THE_PATH_YOU_SAVEd_PROCESSED_DATA
-export MODEL_PATH=THE_PATH_TO_PRETRAINED_MODEL
+export DATA_PATH=THE_PATH_YOU_SAVED_PROCESSED_DATA
+export MODEL_PATH=THE_PATH_OF_PRETRAINED_MODEL
 export OUTPUT_PATH=THE_PATH_TO_SAVE_FINETUNED_MODEL
 
 
