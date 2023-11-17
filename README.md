@@ -21,20 +21,30 @@ You can run the following lines in Linux bash.
 ```
 export KMER=3 ### select the K from 3 to 6
 export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
-export DATA_PATH=THE_PATH_YOU_WANT_TO_SAVE_PROCESS-DATA
+export DATA_PATH=THE_PATH_YOU_WANT_TO_SAVE_PROCESS_DATA
 export seed=52 ## select the seed number your like, this seed is used for data balance 
 python3 get_input.py --do_val --kmer $KMER --extend_len 250 --task finetune --data_dir $RAW_DATA_PATH --save_dir $DATA_PATH --seed $seed
 ```
 
 ## 3. Fine-tune the model 
-G-TEM_pytorch_3l_34.py is the model that has the best performance for our cancer prediction task. The code can sinply run by :
-> python G-TEM_pytorch_3l_34.py  --head_num 5 --learning_rate 0.0001 --act_fun leakyrelu --batch_size 16 --epoch 1 --do_val --dropout_rate 0.3 --result_dir model_res/3l/ --model_dir model/3l/
+m6A-BERT can be easily fine-tuned for downstream analysis. The code can be simply run in Linux bash :
+```
+export KMER=3 ### select the K from 3 to 6, have to match the K in the data process section 
+export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
+export DATA_PATH=THE_PATH_YOU_SAVEd_PROCESSED_DATA
+export MODEL_PATH=THE_PATH_TO_PRETRAINED_MODEL
+export OUTPUT_PATH=THE_PATH_TO_SAVE_FINETUNED_MODEL
 
-The code attached used 3 attention layers. If you want to increase or decrease the number of layers, you can change the structure at line 252~ line 255 and line 271~ line 286. 
 
-Our input file can be downloaded from [here](https://drive.google.com/file/d/13-Xjqexsi8-ZkZm17vcH6oGIivL2O8XW/view?usp=sharing)
+python3 run_finetune_degradation.py --model_type dna --tokenizer_name=dna$KMER --model_name_or_path $MODEL_PATH \
+ --task_name dnaprom --do_train --do_eval --data_dir $DATA_PATH --save_steps 50 --logging_steps 50 \
+ --max_seq_length 512 --per_gpu_eval_batch_size=40 --per_gpu_train_batch_size=40 --learning_rate 1e-6 --num_train_epochs 100 \
+ --output_dir $OUTPUT_PATH --n_process 10 --hidden_dropout_prob 0.1 --evaluate_during_training --weight_decay 0.01
+```
+Our input file can be downloaded from [here]()
+Our pre-trained m6A-BERT  can be downloaded from [here]()
+Our fine-tuned m6A-BERT-DEG  can be downloaded from [here]()
 
-PBMC data and label can be found from [here](https://drive.google.com/file/d/158PAzib3Nq17UMtLMIJwndlX7hqcLaZT/view?usp=sharing), [here](https://drive.google.com/file/d/1gNLyp7b720MFnvQtVLDaXHScIhnPdpR9/view?usp=sharing)
 
 ## 3. Compute the attribution score and give the gene importance rank 
 To evaluate which gene is more important to predicte specific cancer, we use integer gradient(IG) to compute the attribution score for each test samples. The larger score means more importance. 
