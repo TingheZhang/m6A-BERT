@@ -1,4 +1,4 @@
-# m6ABERT
+# m6A-BERT
 This repository includes the implementation of 'Understanding YTHDF2-mediated mRNA Degradation By m6A-BERT-Deg'. 
 
 Please cite our paper if you use the models or codes. The repo is still actively under development, so please kindly report if there is any issue encountered.
