@@ -92,6 +92,7 @@ train means to visulize training set.dev means to visulize validation set. test 
 python3 visualize_find_motif.py --data_dir $DATA_PATH --npy_dir $OUTPUT_PATH --window_size 24 --min_len 5 \
 --pval_cutoff 0.05 --min_n_motif 3 --align_all_ties --save_file_dir $MOTIF_PATH --verbose --data_name $DATASET --do_plot --vis_task $TASK
 ```
+
 if users want to find the motif based on all set (inlcude training set , test set, validation set), they have to Calculate attention/attribution scores for all three set one by one
 Then they can motif based on all set by changing the DATASET :
 > export DATASET=all
