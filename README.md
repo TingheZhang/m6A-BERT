@@ -86,10 +86,14 @@ python3 visualize_all.py --kmer $KMER --model_name_or_path $MODEL_PATH --model_p
 User can select the dataset to visulze by changing the value of DATASET. 
 train means to visulize training set.dev means to visulize validation set. test means to visulize test set.  
 
-### 5.2 Calculate attention/attribution scores
+### 5.2 Find the significant motifs enriched in positive set or negitives set
 
 ```
-python3 visualize_find_motif.py --data_dir $DATA_PATH --npy_dir $OUTPUT_PATH --window_size 24 --min_len 5 \
+## commend to find the enriched motif from positive set
+python3 visualize_find_motif_pos.py --data_dir $DATA_PATH --npy_dir $OUTPUT_PATH --window_size 24 --min_len 5 \
+--pval_cutoff 0.05 --min_n_motif 3 --align_all_ties --save_file_dir $MOTIF_PATH --verbose --data_name $DATASET --do_plot --vis_task $TASK
+## commend to find the enriched motif from negivtive set
+python3 visualize_find_motif_neg.py --data_dir $DATA_PATH --npy_dir $OUTPUT_PATH --window_size 24 --min_len 5 \
 --pval_cutoff 0.05 --min_n_motif 3 --align_all_ties --save_file_dir $MOTIF_PATH --verbose --data_name $DATASET --do_plot --vis_task $TASK
 ```
 
