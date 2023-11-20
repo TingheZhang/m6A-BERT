@@ -73,52 +73,21 @@ export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
 export DATA_PATH=THE_PATH_YOU_SAVED_PROCESSED_DATA
 export FINUE_TUNED_MODEL_PATH=THE_PATH_OF_FINUE_TUNED_MODEL
 export MODEL_PATH=THE_PATH_OF_PRETRAINED_MODEL
-export OUTPUT_PATH=THE_PATH_TO_SAVE_FINETUNED_MODEL
+export OUTPUT_PATH=THE_PATH_TO_SAVE_OUTPUT
+export MOTIF_PATH=THE_PATH_TO_SAVE_MOTIF
 export CP=$OUTPUT_PATH/checkpoint-# ##change # to user selected numbers
 export DATASET=all ##select the dataset to visulize, could be all, train, dev, test
+export TASK= attr  ##select the visulzation methods, could be attn (attention weights) or attr (attribution scores)
 
 python3 visualize_all.py --kmer $KMER --model_name_or_path $MODEL_PATH --model_path $FINUE_TUNED_MODEL_PATH --output_dir $OUTPUT_PATH \
---data_dir $DATA_PATH --data_name $DATASET --vis_task attn --batch_size 50
+--data_dir $DATA_PATH --data_name $DATASET --vis_task $TASK --batch_size 50
 ```
-User can select the dataset to visulze by changing the value of DATASET. train means to visulize training set.
-dev means to visulize validation set. 
-test means to visulize test set.  
-all means visulize all dataset, inlcude training set , test set, validation set. 
-User can select
+User can select the dataset to visulze by changing the value of DATASET. 
+train means to visulize training set.dev means to visulize validation set. test means to visulize test set. all means visulize all dataset, inlcude training set , test set, validation set. 
 
-## 3. Compute the attribution score and give the gene importance rank 
-To evaluate which gene is more important to predicte specific cancer, we use integer gradient(IG) to compute the attribution score for each test samples. The larger score means more importance. 
-To compute the attribution score, it can be easily got by:
-> python G-TEM_t_attr_allcancer.py --head_num 5 --learning_rate 0.0001 --act_fun leakyrelu --batch_size 16 --epoch 1 --do_val --dropout_rate 0.3 --result_dir attr_34cancer/ --attr_method ig --model_location model/3l/pytorch_transformer_head_5_lr_0.0001_leakyrelu_epoch0.model --abs 
+### 5.2 Calculate attention/attribution scores
 
-The outpult files: validation result/ test result ; ablation study result; Gene importance rank for each cancer prediction;  
-
-
-Notice, the model structure in G-TEM_t_attr_allcancer.py has to match the structure at G-TEM_pytorch_3l_34.py. 
-
-This code can compute the mean and medain of attribuiton score for the all val/test samples. The attribution score can be used to rank the input importance or do enrichment. We have supportted 6 methods to compute the attribution scores: ig ([Integrated Gradients](https://captum.ai/docs/extension/integrated_gradients)), sg_ig (Integrated Gradients with gaussian noise, [smoothgrad_sq](https://captum.ai/api/noise_tunnel.html)),vg_ig(Integrated Gradients with gaussian noise,vargrad) , gb ([Guided Backprop](https://captum.ai/api/guided_backprop.html)), vg_gb (Guided Backprop with with gaussian noise,vargrad),sg_gb (Guided Backprop with with gaussian noise,smoothgrad_sq). You can change the parameter --attr_method to apply them. 
-
-If you want to compute the attribution for validation data, You can add parameter --do_val. Otherwise it will compute the attribution score for test set.
-
-The input gene importance can be also analyzed by aliblition study. We removed the gene with top attibution score batch by batch and test their affection to accruacy.
-Significant accrucay dropped means these genes are import to predict this type of cancers. 
-
-
-## 4. Compute and visulize the attention weights and entropy for each attention layers
-To discover the inner relationship at each layer, we can use attention weights and entropy of attention wieghts.  
-G-TEM_t_vis.py has two mode 'attn' and 'vis'. 'attn' is used for get the attention weights for each layer.
-'vis' for visualizing. The output will be the average entropy for each heah at each layers and related boxplot. 
-
-> python G-TEM_t_vis.py --head_num 5 --learning_rate 0.0001 --act_fun leakyrelu --batch_size 16 --epoch 1 --dropout_rate 0.3 --result_dir model_res_vis_all/  --model_location model/3l/pytorch_transformer_head_5_lr_0.0001_leakyrelu_epoch0.model --task attn
-
-Notice, the model structure in G-TEM_t_vis.py has to match the structure at G-TEM_pytorch_3l_34.py. 
-
-## 5. Compute the attributation of attention weights for each layer
-To obtain the hub genes, first we should compute the attribution of attention weights for each head at each layers 
-> python G-TEM_t_attr_3l_head.py --head_num 5 --cancer_type 0 --act_fun leakyrelu --result_dir model_res_vis_all/  --model_location model/3l/pytorch_transformer_head_5_lr_0.0001_leakyrelu_epoch0.model
-
-After obtaining these attribution scores, we can generate the coresponsding net
->python3 get_net.py --head_num 5 --cancer_type 0 --result_dir model_res_vis_all/ --net_dir gene_net/ --threshold 0.001
-
-
-The output are txt files which contain the Query gene and Key gene pairs. To create the net, these files should be feed into [Cytoscape](https://cytoscape.org/). 
+```
+python3 visualize_find_motif.py --data_dir $DATA_PATH --npy_dir $OUTPUT_PATH --window_size 24 --min_len 5 \
+--pval_cutoff 0.05 --min_n_motif 3 --align_all_ties --save_file_dir $MOTIF_PATH --verbose --data_name $DATASET --do_plot --vis_task $TASK
+```
