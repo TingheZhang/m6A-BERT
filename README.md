@@ -22,7 +22,7 @@ You can run the following lines in Linux bash：
 export KMER=3 ### select the K from 3 to 6
 export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
 export DATA_PATH=THE_PATH_YOU_WANT_TO_SAVE_PROCESS_DATA
-export seed=52 ## select the seed number your like, this seed is used for data balance 
+export seed=452 ## select the seed number your like, this seed is used for data balance 
 python3 get_input.py --do_val --kmer $KMER --extend_len 250 --task finetune --data_dir $RAW_DATA_PATH --save_dir $DATA_PATH --seed $seed
 ```
 under user's RAW_DATA_PATH, positive sequence should be put into pos.fa; negitive sequence should be put into neg.fa
@@ -37,12 +37,12 @@ export DATA_PATH=THE_PATH_YOU_SAVED_PROCESSED_DATA
 export MODEL_PATH=THE_PATH_OF_PRETRAINED_MODEL
 export OUTPUT_PATH=THE_PATH_TO_SAVE_FINETUNED_MODEL
 
-
 python3 run_finetune_degradation.py --model_type dna --tokenizer_name=dna$KMER --model_name_or_path $MODEL_PATH \
  --task_name dnaprom --do_train --do_eval --data_dir $DATA_PATH --save_steps 50 --logging_steps 50 \
  --max_seq_length 512 --per_gpu_eval_batch_size=40 --per_gpu_train_batch_size=40 --learning_rate 1e-6 --num_train_epochs 100 \
  --output_dir $OUTPUT_PATH --n_process 10 --hidden_dropout_prob 0.1 --evaluate_during_training --weight_decay 0.01
 ```
+Please adjust the per_gpu_eval_batch_size and per_gpu_train_batch_size based on your GPU memory size.
 Our input file can be downloaded from [here]()
 Our pre-trained m6A-BERT  can be downloaded from [here]()
 Our fine-tuned m6A-BERT-DEG  can be downloaded from [here]()
