@@ -61,7 +61,7 @@ export CP=$OUTPUT_PATH/checkpoint-# ##change # to user selected numbers
 
 python3 run_predict_degradation.py --model_type dna --tokenizer_name=dna$KMER --model_name_or_path $MODEL_PATH \
  --task_name dnaprom --data_dir $DATA_PATH --save_steps 50 --logging_steps 50 --do_predict \
- --max_seq_length 512 --per_gpu_eval_batch_size=50 --per_gpu_train_batch_size=50 --learning_rate 1e-5 --num_train_epochs 100 \
+ --max_seq_length 512 --per_gpu_eval_batch_size=50 --per_gpu_train_batch_size=50 --learning_rate 1e-6 --num_train_epochs 100 \
  --output_dir $CP --n_process 1  --evaluate_during_training --predict_dir $OUTPUT_PATH
 ```
 
