@@ -10,7 +10,8 @@ If you have used m6A-BERT in your research, please kindly cite the our publicati
 1. Create the Conda environment from the provided YAML file:
   > conda env create -f m6abert.yml 
 
-you can set your enviroment names by change the first line of the m6abert.yml . Details can be found at [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
+    You can customize the environment name by changing the first line of the `m6abert.yml` file. For more details on managing Conda environments, refer to the [official documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
+
 
 The following package is necessary for our project: pytorch=1.10.2, captum=0.5.0,python=3.6
 After enviroment setup, use following command to activate this enviroments:
