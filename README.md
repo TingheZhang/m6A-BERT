@@ -46,7 +46,7 @@ Our pre-trained m6A-BERT  can be downloaded from [here]()
 Our fine-tuned m6A-BERT-DEG  can be downloaded from [here]()
 
 
-## 3. Make the prediction 
+## 4. Make the prediction 
 After fine-tuned and obtained m6A-BERT-DEG model, people can make the prediction by using the commends below: 
 
 ```
@@ -62,7 +62,7 @@ python3 run_predict_degradation.py --model_type dna --tokenizer_name=dna$KMER --
  --task_name dnaprom --data_dir $DATA_PATH --save_steps 50 --logging_steps 50 --do_predict \
  --max_seq_length 512 --per_gpu_eval_batch_size=50 --per_gpu_train_batch_size=50 --learning_rate 1e-5 --num_train_epochs 100 \
  --output_dir $CP --n_process 1  --evaluate_during_training --predict_dir $OUTPUT_PATH
-
+```
 
 ## 3. Compute the attribution score and give the gene importance rank 
 To evaluate which gene is more important to predicte specific cancer, we use integer gradient(IG) to compute the attribution score for each test samples. The larger score means more importance. 
