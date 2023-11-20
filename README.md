@@ -1,14 +1,13 @@
-# m6A-BERT
+# m6A-BERT-Deg
 This repository contains the implementation of our paper ‘Understanding YTHDF2-mediated mRNA Degradation By m6A-BERT-Deg’.
-In this paper, we propose a novel model, m6A-BERT-Deg, that leverages the pre-trained language model BERT and the m6A modification information to predict the mRNA degradation rate. We also perform attribution analysis using the Captum library to interpret the model’s predictions and identify the key features that influence the mRNA degradation. Our experiments show that our model achieves state-of-the-art performance on two benchmark datasets and reveals new insights into the role of m6A in mRNA degradation.
 
-In this package, we provides resources including: source codes of the m6A-BERT model, usage examples, pre-trained models, fine-tuned models and visulization tool. We are still actively developing the repo, so please kindly report any issues that you encounter.
+In this repository, we provides resources including: source codes of the m6A-BERT-Deg, usage examples, pre-trained models, fine-tuned models and visulization tool. We are still actively developing the repo, so please kindly report any issues that you encounter.
+
 If you have used m6A-BERT in your research, please kindly cite the our publications.
 
 ## 1. Environment setup 
-[Conda](https://docs.anaconda.com/anaconda/install/linux/) is recommanded to set up the enviroment. 
-you can simply install the necessary dependacy by using command 
-
+[Conda](https://docs.anaconda.com/anaconda/install/linux/) is recommended for setting up the environment. You can easily install the necessary dependencies by using the following commands:
+1. Create the Conda environment from the provided YAML file:
   > conda env create -f m6abert.yml 
 
 you can set your enviroment names by change the first line of the m6abert.yml . Details can be found at [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
