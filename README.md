@@ -17,7 +17,7 @@ After enviroment setup, use following command to activate this enviroments:
  > conda activate m6abert
 ## 2.Data process
 The sequence should be processed into the K-mer before the fine-tuning and prediction.
-You can run the following lines in Linux bash.
+You can run the following lines in Linux bash：
 ```
 export KMER=3 ### select the K from 3 to 6
 export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
@@ -25,6 +25,8 @@ export DATA_PATH=THE_PATH_YOU_WANT_TO_SAVE_PROCESS_DATA
 export seed=52 ## select the seed number your like, this seed is used for data balance 
 python3 get_input.py --do_val --kmer $KMER --extend_len 250 --task finetune --data_dir $RAW_DATA_PATH --save_dir $DATA_PATH --seed $seed
 ```
+under user's RAW_DATA_PATH, positive sequence should be put into pos.fa; negitive sequence should be put into neg.fa
+The data we used in the paper can be found at data/
 
 ## 3. Fine-tune the model 
 m6A-BERT can be easily fine-tuned for downstream analysis. The code can be simply run in Linux bash :
