@@ -1,8 +1,9 @@
 # m6A-BERT
-This repository includes the implementation of 'Understanding YTHDF2-mediated mRNA Degradation By m6A-BERT-Deg'. 
+This repository contains the implementation of our paper ‘Understanding YTHDF2-mediated mRNA Degradation By m6A-BERT-Deg’.
+In this paper, we propose a novel model, m6A-BERT-Deg, that leverages the pre-trained language model BERT and the m6A modification information to predict the mRNA degradation rate. We also perform attribution analysis using the Captum library to interpret the model’s predictions and identify the key features that influence the mRNA degradation. Our experiments show that our model achieves state-of-the-art performance on two benchmark datasets and reveals new insights into the role of m6A in mRNA degradation.
 
-Please cite our paper if you use the models or codes. The repo is still actively under development, so please kindly report if there is any issue encountered.
-
+In this package, we provides resources including: source codes of the DNABERT model, usage examples, pre-trained models, fine-tuned models and visulization tool. We are still actively developing the repo, so please kindly report any issues that you encounter.
+If you have used m6A-BERT in your research, please kindly cite the our publications.
 
 ## 1. Environment setup 
 [Conda](https://docs.anaconda.com/anaconda/install/linux/) is recommanded to set up the enviroment. 
