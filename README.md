@@ -57,12 +57,12 @@ export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
 export DATA_PATH=THE_PATH_YOU_SAVED_PROCESSED_DATA
 export MODEL_PATH=THE_PATH_OF_PRETRAINED_MODEL
 export OUTPUT_PATH=THE_PATH_TO_SAVE_FINETUNED_MODEL
-export CP=$OUTPUT_PATH/checkpoint-# ##change # to user selected numbers 
+export FINUE_TUNED_MODEL_PATH=$OUTPUT_PATH/checkpoint-# ##change # to user selected numbers 
 
 python3 run_predict_degradation.py --model_type dna --tokenizer_name=dna$KMER --model_name_or_path $MODEL_PATH \
  --task_name dnaprom --data_dir $DATA_PATH --save_steps 50 --logging_steps 50 --do_predict \
  --max_seq_length 512 --per_gpu_eval_batch_size=50 --per_gpu_train_batch_size=50 --learning_rate 1e-6 --num_train_epochs 100 \
- --output_dir $CP --n_process 1  --evaluate_during_training --predict_dir $OUTPUT_PATH
+ --output_dir $FINUE_TUNED_MODEL_PATH --n_process 1  --evaluate_during_training --predict_dir $OUTPUT_PATH
 ```
 
 ## 5. Visulzation 
@@ -77,15 +77,14 @@ export FINUE_TUNED_MODEL_PATH=THE_PATH_OF_FINUE_TUNED_MODEL
 export MODEL_PATH=THE_PATH_OF_PRETRAINED_MODEL
 export OUTPUT_PATH=THE_PATH_TO_SAVE_OUTPUT
 export MOTIF_PATH=THE_PATH_TO_SAVE_MOTIF
-export CP=$OUTPUT_PATH/checkpoint-# ##change # to user selected numbers
-export DATASET=all ##select the dataset to visulize, could be all, train, dev, test
-export TASK= attr  ##select the visulzation methods, could be attn (attention weights) or attr (attribution scores)
+export DATASET=dev ##select the dataset to visulize, could be train, dev, test
+export TASK=attr  ##select the visulzation methods, could be attn (attention weights) or attr (attribution scores)
 
 python3 visualize_all.py --kmer $KMER --model_name_or_path $MODEL_PATH --model_path $FINUE_TUNED_MODEL_PATH --output_dir $OUTPUT_PATH \
 --data_dir $DATA_PATH --data_name $DATASET --vis_task $TASK --batch_size 50
 ```
 User can select the dataset to visulze by changing the value of DATASET. 
-train means to visulize training set.dev means to visulize validation set. test means to visulize test set. all means visulize all dataset, inlcude training set , test set, validation set. 
+train means to visulize training set.dev means to visulize validation set. test means to visulize test set.  
 
 ### 5.2 Calculate attention/attribution scores
 
@@ -93,3 +92,6 @@ train means to visulize training set.dev means to visulize validation set. test 
 python3 visualize_find_motif.py --data_dir $DATA_PATH --npy_dir $OUTPUT_PATH --window_size 24 --min_len 5 \
 --pval_cutoff 0.05 --min_n_motif 3 --align_all_ties --save_file_dir $MOTIF_PATH --verbose --data_name $DATASET --do_plot --vis_task $TASK
 ```
+if users want to find the motif based on all set (inlcude training set , test set, validation set), they have to Calculate attention/attribution scores for all three set one by one
+Then they can motif based on all set by changing the DATASET :
+> export DATASET=all
