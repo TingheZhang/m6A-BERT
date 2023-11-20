@@ -13,9 +13,16 @@ If you have used m6A-BERT in your research, please kindly cite the our publicati
     You can customize the environment name by changing the first line of the `m6abert.yml` file. For more details on managing Conda environments, refer to the [official documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
 
 
-The following package is necessary for our project: pytorch=1.10.2, captum=0.5.0,python=3.6
-After enviroment setup, use following command to activate this enviroments:
- > conda activate m6abert
+2. The following packages are necessary for our project: `pytorch=1.10.2`, `captum=0.5.0`, `python=3.6`.
+
+3. After setting up the environment, activate it using the following command:
+
+    ```bash
+    conda activate m6abert
+    ```
+    
+   Ensure that you activate the environment before running any scripts or commands related to this project.
+   
 ## 2.Data process
 The sequence should be processed into the K-mer before the fine-tuning and prediction.
 You can run the following lines in Linux bash：
