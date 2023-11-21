@@ -54,7 +54,7 @@ Before fine-tuning and prediction, the input sequences should be processed into 
 
     Ensure that under your `RAW_DATA_PATH`, positive sequences are in `pos.fa`, and negative sequences are in `neg.fa`.
 
-The processed data used in the paper is available in the `data/` directory.
+Our input data used in the paper is available in the `data/` directory.
 
 ## 3. Fine-tune the model 
 m6A-BERT can be easily fine-tuned for downstream analysis. The code can be simply run in Linux bash :
@@ -71,7 +71,6 @@ python3 run_finetune_degradation.py --model_type dna --tokenizer_name=dna$KMER -
  --output_dir $OUTPUT_PATH --n_process 10 --hidden_dropout_prob 0.1 --evaluate_during_training --weight_decay 0.01
 ```
 Please adjust the per_gpu_eval_batch_size and per_gpu_train_batch_size based on your GPU memory size.
-Our input file can be downloaded from [here]()
 Our pre-trained m6A-BERT  can be downloaded from [here]()
 Our fine-tuned m6A-BERT-DEG  can be downloaded from [here]()
 
