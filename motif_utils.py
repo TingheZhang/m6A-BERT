@@ -1,4 +1,4 @@
-#### ::: utils for DNABERT-viz motif search ::: ####
+#### ::: utils modified from DNABERT-viz for motif search ::: ####
 
 import os
 import pandas as pd
