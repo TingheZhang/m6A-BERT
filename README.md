@@ -23,18 +23,38 @@ If you have used m6A-BERT in your research, please kindly cite the our publicati
     
    Ensure that you activate the environment before running any scripts or commands related to this project.
    
-## 2.Data process
-The sequence should be processed into the K-mer before the fine-tuning and prediction.
-You can run the following lines in Linux bash：
-```
-export KMER=3 ### select the K from 3 to 6
-export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
-export DATA_PATH=THE_PATH_YOU_WANT_TO_SAVE_PROCESS_DATA
-export seed=452 ## select the seed number your like, this seed is used for data balance 
-python3 get_input.py --do_val --kmer $KMER --extend_len 250 --task finetune --data_dir $RAW_DATA_PATH --save_dir $DATA_PATH --seed $seed
-```
-under user's RAW_DATA_PATH, positive sequence should be put into pos.fa; negitive sequence should be put into neg.fa
-The data we used in the paper can be found at data/
+## 2. Data Processing
+
+Before fine-tuning and prediction, the input sequences should be processed into K-mers. Follow the steps below to preprocess your data:
+
+1. Set the desired K-mer length (K) by exporting the variable:
+
+    ```bash
+    export KMER=3 ### Select K from 3 to 6
+    ```
+
+2. Specify the paths for raw data and the location to save processed data:
+
+    ```bash
+    export RAW_DATA_PATH=YOUR_RAW_DATA_PATH
+    export DATA_PATH=THE_PATH_YOU_WANT_TO_SAVE_PROCESS_DATA
+    ```
+
+3. Set a seed number for data balancing:
+
+    ```bash
+    export SEED=452 ### Choose your desired seed number
+    ```
+
+4. Run the following command in a Linux bash environment to get proper input:
+
+    ```bash
+    python3 get_input.py --do_val --kmer $KMER --extend_len 250 --task finetune --data_dir $RAW_DATA_PATH --save_dir $DATA_PATH --seed $SEED
+    ```
+
+    Ensure that under your `RAW_DATA_PATH`, positive sequences are in `pos.fa`, and negative sequences are in `neg.fa`.
+
+The processed data used in the paper is available in the `data/` directory.
 
 ## 3. Fine-tune the model 
 m6A-BERT can be easily fine-tuned for downstream analysis. The code can be simply run in Linux bash :
