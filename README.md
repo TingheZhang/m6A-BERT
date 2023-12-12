@@ -99,7 +99,7 @@ After fine-tuned and obtained m6A-BERT-DEG model, people can make the prediction
 
 ```
 export KMER=3 ### select the K from 3 to 6, have to match the K in the data process section 
-export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
+#export RAW_DATA_PATH= YOUR_RAW_DATA_PATH
 export DATA_PATH=THE_PATH_YOU_SAVED_PROCESSED_DATA
 export FINUE_TUNED_MODEL_PATH=THE_PATH_OF_FINUE_TUNED_MODEL
 export MODEL_PATH=THE_PATH_OF_PRETRAINED_MODEL
