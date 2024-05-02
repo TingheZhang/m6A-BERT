@@ -3,9 +3,9 @@ This repository contains the implementation of our paper ‘Understanding YTHDF2
 
 In this repository, we provides resources including: source codes of the m6A-BERT-Deg, usage examples, pre-trained models, fine-tuned models and visulization tool. We are still actively developing the repo, so please kindly report any issues that you encounter.
 
-If you use m6A-BERT in your research, please cite the following publication:
+If you use m6A-BERT in your research, please kindly cite the following publication:
 
-Ting-He Zhang, Sumin Jo, Michelle Zhang, Kai Wang, Shou-Jiang Gao, Yufei Huang, "Understanding YTHDF2-mediated mRNA degradation by m6A-BERT-Deg," Briefings in Bioinformatics, Vol. 25, Issue 3, May 2024, bbae170. DOI: 10.1093/bib/bbae170
+> Ting-He Zhang, Sumin Jo, Michelle Zhang, Kai Wang, Shou-Jiang Gao, Yufei Huang, "Understanding YTHDF2-mediated mRNA degradation by m6A-BERT-Deg," *Briefings in Bioinformatics*, Vol. 25, Issue 3, May 2024, bbae170. DOI: [10.1093/bib/bbae170](https://doi.org/10.1093/bib/bbae170)
 
 ## 1. Environment setup 
 [Conda](https://docs.anaconda.com/anaconda/install/linux/) is recommended for setting up the environment. You can easily install the necessary dependencies by using the following commands:
