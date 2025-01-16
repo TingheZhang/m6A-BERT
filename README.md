@@ -74,8 +74,7 @@ python3 run_finetune_degradation.py --model_type dna --tokenizer_name=dna$KMER -
 ```
 Please adjust the per_gpu_eval_batch_size and per_gpu_train_batch_size based on your GPU memory size.
 
-Our pre-trained m6A-BERT  can be downloaded from [here](https://drive.google.com/drive/folders/1K66vzqkc68hmCZto5Xj-c6ui7ROvj6B3?usp=sharing)
-Our fine-tuned m6A-BERT-DEG  can be downloaded from [here](https://drive.google.com/drive/folders/1EKb2KiDRMnHCSlcGFCplpiQ__4G102EL?usp=sharing)
+Our pre-trained m6A-BERT and Our fine-tuned m6A-BERT-DEG  can be downloaded from [here]([https://drive.google.com/drive/folders/1EKb2KiDRMnHCSlcGFCplpiQ__4G102EL?usp=sharing](https://utsacloud-my.sharepoint.com/:f:/g/personal/tinghe_zhang_utsa_edu/EiJfHwd0c69Pp1-dDZ7_Ly0B2q8s2vhiOfYvKRhWazmOjw?e=rIdWa2))
 
 
 ## 4. Make the prediction 
