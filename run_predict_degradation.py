@@ -72,7 +72,7 @@ from transformers import glue_convert_examples_to_features as convert_examples_t
 from transformers import glue_output_modes as output_modes
 from transformers import glue_processors as processors
 
-os.environ["CUDA_VISIBLE_DEVICES"]="2"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 try:
     from torch.utils.tensorboard import SummaryWriter
 except ImportError:
