@@ -28,7 +28,7 @@ from transformers import glue_output_modes as output_modes
 from captum.attr import IntegratedGradients, LayerConductance, LayerIntegratedGradients, LayerActivation
 # from captum.attr import configure_interpretable_embedding_layer, remove_interpretable_embedding_layer
 import logging
-os.environ["CUDA_VISIBLE_DEVICES"]="2"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 TOKEN_ID_GROUP = ["bert", "dnalong", "dnalongcat", "xlnet", "albert"]
